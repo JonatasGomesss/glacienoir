@@ -9,6 +9,17 @@
         <div class="logo-line" />
       </div>
 
+      <!-- Hamburger Menu (Mobile Only) -->
+      <button
+        class="hamburger-btn"
+        :class="{ 'active': isMenuOpen }"
+        @click="toggleMenu"
+      >
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+
       <nav class="nav-links">
         <ul>
           <li><a href="#inicio">Início</a></li>
@@ -145,11 +156,12 @@ $accent-color: #ffffff;
 
 .header-container {
   max-width: 1400px;
+  width: 100%;
   display: flex;
-  justify-content: center;
+  gap: 200px;
+  justify-content: space-between;
   align-items: center;
   margin: auto;
-  gap: 210px;
 }
 
 .logo-section {
@@ -312,8 +324,126 @@ $accent-color: #ffffff;
     padding: 1.5rem 5%;
   }
 
+  .header-container {
+    gap: 0;
+  }
+
   .search-wrapper.active input {
     width: 180px;
   }
+
+  .hamburger-btn {
+    display: flex;
+  }
 }
+
+// --- Mobile Menu Overlay ---
+.mobile-menu-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: #050505;
+  z-index: 999;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem;
+  font-family: 'Outfit', sans-serif;
+}
+
+.mobile-nav {
+  ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    text-align: center;
+
+    li {
+      margin-bottom: 2.5rem;
+      overflow: hidden;
+
+      a {
+        text-decoration: none;
+        color: #fff;
+        font-size: 2.5rem;
+        font-weight: 200;
+        text-transform: uppercase;
+        letter-spacing: 8px;
+        display: block;
+        transition: all 0.4s ease;
+
+        &:hover {
+          letter-spacing: 12px;
+          color: rgba(255, 255, 255, 0.6);
+        }
+      }
+    }
+  }
+}
+
+.mobile-socials {
+  margin-top: 4rem;
+  display: flex;
+  gap: 2rem;
+
+  .social-link {
+    color: #4a5568;
+    text-decoration: none;
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    transition: color 0.3s ease;
+
+    &:hover {
+      color: #fff;
+    }
+  }
+}
+
+// --- Hamburger Button ---
+.hamburger-btn {
+  display: none; // Hidden on desktop
+  flex-direction: column;
+  justify-content: space-between;
+  width: 24px;
+  height: 16px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  z-index: 1001; // Above header and overlay
+
+  span {
+    width: 100%;
+    height: 1.5px;
+    background: #fff;
+    transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+    transform-origin: center;
+  }
+
+  &.active {
+    span:nth-child(1) {
+      transform: translateY(7px) rotate(45deg);
+    }
+    span:nth-child(2) {
+      opacity: 0;
+    }
+    span:nth-child(3) {
+      transform: translateY(-7px) rotate(-45deg);
+    }
+  }
+}
+
+// Transitions
+.fade-enter-active, .fade-leave-active {
+  transition: opacity 0.5s ease;
+}
+
+.fade-enter-from, .fade-leave-to {
+  opacity: 0;
+}
+
 </style>
