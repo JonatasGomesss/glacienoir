@@ -158,7 +158,7 @@ $accent-color: #ffffff;
   max-width: 1400px;
   width: 100%;
   display: flex;
-  gap: 200px;
+  gap: 260px;
   justify-content: space-between;
   align-items: center;
   margin: auto;
